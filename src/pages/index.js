@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { graphql, useStaticQuery } from "gatsby";
 
+
 const IndexPage = () => {
   const [events, setEvents] = useState(null);
   useEffect(() => {
@@ -32,13 +33,16 @@ const IndexPage = () => {
 
   return (
     <main>
-      <div id="events" class="w-full p-8">
+      <div id="events" className="w-full p-8">
         {events.length > 0 ? (
           events.map((event) => (
-            <div class="event border w-1/2 relative">
+            <div className="event border w-1/2 relative">
               <img src={event.thumbnail} />
               <p key={event.id}>{event.name}</p>
-              <a href={event.link} class="cursor-pointer absolute w-full h-full top-0 left-0 z-10"></a>
+              <a
+                href={event.link}
+                className="cursor-pointer absolute w-full h-full top-0 left-0 z-10 opacity-0"
+              >{event.name}</a>
             </div>
           ))
         ) : (
