@@ -15,10 +15,10 @@ exports.createPages = async function ({ actions }) {
   );
   const events = await eventData.json();
   events._embedded.events.forEach((node) => {
-    // const slug = node.url.replace("https://www.ticketmaster.com", "");
     const eventPath = path.parse(node.url);
-    const slug = eventPath.dir.replace("https://www.ticketmaster.com","");
-    console.log("slug", slug);
+    console.log('eventPath',eventPath);
+    const slug = eventPath.dir.replace("https://www.ticketmaster.com/","").replace("event","");
+    console.log('slug',slug);
     const name = node.name;
     const eventTemplate = require.resolve("./src/templates/event.js");
     actions.createPage({
