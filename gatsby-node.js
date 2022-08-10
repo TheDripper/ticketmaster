@@ -16,13 +16,15 @@ exports.createPages = async function ({ actions }) {
     const eventPath = path.parse(node.url);
     const url = eventPath.dir.split("/");
     let slug = url[url.length - 2];
-    const name = node.name;
+    const name = node.name; 
     const eventTemplate = require.resolve("./src/templates/event.js");
     if (slug != "www.ticketmaster.com") {
       actions.createPage({
         path: slug,
         component: eventTemplate,
-        context: { slug: slug, name: name },
+        context: {
+          event: node,
+        },
       });
     }
   });
