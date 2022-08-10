@@ -1,10 +1,12 @@
 import React from "react"
 
-function EventTemplate(props) {
-  console.log('props',props);
+function EventTemplate({pageContext}) {
   return (
     <div>
-      <h1>{props.pageContext.event.name}</h1> // how to get props from createPages data?
+      <h1>{pageContext.event.name}</h1> 
+      <img src={pageContext.event.images[0].url} />
+      <p class="text-lg">{pageContext.event.dates.start.localDate}</p>
+      <p class="text-lg">{pageContext.event.dates.start.localTime}</p>  
     </div>
   )
 }

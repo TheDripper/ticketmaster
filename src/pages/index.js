@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { graphql, useStaticQuery } from "gatsby";
+import Events from '../components/events';
 
 
 const IndexPage = () => {
   const [events, setEvents] = useState(null);
+
+  
   useEffect(() => {
     (async () => {
       const data = await fetch(
@@ -24,6 +27,7 @@ const IndexPage = () => {
         returnedEvents.push(eventData);
       }
       setEvents(returnedEvents);
+
     })();
   }, []);
 
@@ -33,22 +37,7 @@ const IndexPage = () => {
 
   return (
     <main>
-      <div id="events" className="w-full p-8">
-        {events.length > 0 ? (
-          events.map((event) => (
-            <div className="event border w-1/2 relative">
-              <img src={event.thumbnail} />
-              <p key={event.id}>{event.name}</p>
-              <a
-                href={event.link}
-                className="cursor-pointer absolute w-full h-full top-0 left-0 z-10 opacity-0"
-              >{event.name}</a>
-            </div>
-          ))
-        ) : (
-          <p>No events</p>
-        )}
-      </div>
+      <Events  events={events} />
     </main>
   );
 };
