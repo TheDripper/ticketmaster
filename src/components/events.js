@@ -3,10 +3,10 @@ import { Link } from "gatsby";
 
 const Events = ({ events, children }) => {
   return (
-      <div id="events" className="w-full p-8">
-        {events.length > 0 ? (
+      <div id="events" className="w-full p-8 flex flex-wrap items-center justify-center">
+        {events && events.length > 0 ? (
           events.map((event) => (
-            <div className="event border w-1/2 relative">
+            <div className="event border w-1/4 relative m-4">
               <img src={event.thumbnail} />
               <p key={event.id}>{event.name}</p>
               <a

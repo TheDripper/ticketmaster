@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import Events from '../components/events';
+import Search from '../components/search';
 
 
 const IndexPage = () => {
@@ -13,7 +14,6 @@ const IndexPage = () => {
         "https://app.ticketmaster.com/discovery/v2/events.json?keyword=baseball&apikey=Is8qRbhQMZ2EQ0e6a86GfBPg79vMDqb1"
       );
       const response = await data.json();
-      console.log("response", response);
       let returnedEvents = [];
       for (let event of response._embedded.events) {
         let eventData = {
@@ -27,7 +27,6 @@ const IndexPage = () => {
         returnedEvents.push(eventData);
       }
       setEvents(returnedEvents);
-
     })();
   }, []);
 
@@ -37,7 +36,8 @@ const IndexPage = () => {
 
   return (
     <main>
-      <Events  events={events} />
+      <Search />
+      <Events events={events} />
     </main>
   );
 };
